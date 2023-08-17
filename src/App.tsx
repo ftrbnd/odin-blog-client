@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface User {
   _id: string;
@@ -22,8 +23,13 @@ const App = () => {
 
   return (
     <div>
-      <h1>Users</h1>
-      {isLoading ? <p>Loading...</p> : users.map((user, i) => <p key={i}>{user.username}</p>)}
+      <ul>
+        <h1>Users:</h1>
+        {isLoading ? <p>Loading...</p> : users.map((user, i) => <li key={i}>{user.username}</li>)}
+      </ul>
+      <Link to={'/auth'}>
+        <button>Sign Up</button>
+      </Link>
     </div>
   );
 };
