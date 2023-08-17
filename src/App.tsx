@@ -28,7 +28,7 @@ const App = () => {
         {isLoading ? <p>Loading...</p> : users.map((user, i) => <li key={i}>{user.username}</li>)}
       </ul>
       <Link to={'/auth'}>
-        <button>Sign Up</button>
+        <button>Auth</button>
       </Link>
     </div>
   );

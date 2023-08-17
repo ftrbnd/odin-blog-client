@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp: FC = () => {
+const LogIn: FC = () => {
   const [username, setUsername] = useState<string>('');
   const [usernameError, setUsernameError] = useState(false);
   const [password, setPassword] = useState<string>('');
@@ -14,10 +14,10 @@ const SignUp: FC = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     switch (e.target.id) {
-      case 'signupUsername':
+      case 'loginUsername':
         setUsername(e.target.value);
         break;
-      case 'signupPassword':
+      case 'loginPassword':
         setPassword(e.target.value);
         break;
     }
@@ -57,11 +57,11 @@ const SignUp: FC = () => {
     try {
       setIsLoading(true);
 
-      const signUpResponse = await axios.post('/api/users/signup', {
+      const logInResponse = await axios.post('/api/users/login', {
         username,
         password
       });
-      console.log('SIGNUP: ', signUpResponse);
+      console.log('LOGIN: ', logInResponse);
 
       setFormValid('');
       setIsLoading(false);
@@ -75,11 +75,11 @@ const SignUp: FC = () => {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <h2>Sign Up</h2>
-      <label htmlFor="signupUsername">Username</label>
-      <input id="signupUsername" placeholder="Username" type="text" onChange={(e) => handleInputChange(e)} onBlur={handleUsername} value={username} />
-      <label htmlFor="signupPassword">Password</label>
-      <input id="signupPassword" placeholder="Password" type="password" onChange={(e) => handleInputChange(e)} onBlur={handlePassword} value={password} />
+      <h2>Log In</h2>
+      <label htmlFor="loginUsername">Username</label>
+      <input id="loginUsername" placeholder="Username" type="text" onChange={(e) => handleInputChange(e)} onBlur={handleUsername} value={username} />
+      <label htmlFor="loginPassword">Password</label>
+      <input id="loginPassword" placeholder="Password" type="password" onChange={(e) => handleInputChange(e)} onBlur={handlePassword} value={password} />
       <button type="submit">Submit</button>
       {isLoading && <p>Submitting...</p>}
       {formValid && <p>{formValid}</p>}
@@ -87,4 +87,4 @@ const SignUp: FC = () => {
   );
 };
 
-export default SignUp;
+export default LogIn;
