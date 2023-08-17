@@ -57,11 +57,11 @@ const SignUp: FC = () => {
     try {
       setIsLoading(true);
 
-      const signUpResponse = await axios.post('/api/users/signup', {
+      const response = await axios.post('/api/users/signup', {
         username,
         password
       });
-      console.log('SIGNUP: ', signUpResponse);
+      console.log('SIGNUP: ', response);
 
       setFormValid('');
       setIsLoading(false);

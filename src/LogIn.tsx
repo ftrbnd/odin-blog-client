@@ -57,11 +57,11 @@ const LogIn: FC = () => {
     try {
       setIsLoading(true);
 
-      const logInResponse = await axios.post('/api/users/login', {
+      const response = await axios.post('/api/users/login', {
         username,
         password
       });
-      console.log('LOGIN: ', logInResponse);
+      console.log('LOGIN: ', response);
 
       setFormValid('');
       setIsLoading(false);
