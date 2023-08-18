@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Auth from './pages/Auth';
-import App from './App';
+import App from './pages/App';
 
 const RouteSwitch: FC = () => {
   return (

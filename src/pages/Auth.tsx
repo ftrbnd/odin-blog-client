@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import SignUp from '../components/SignUp';
 import { Link } from 'react-router-dom';
-import LogIn from '../LogIn';
+import LogIn from '../components/LogIn';
 import axios from 'axios';
 
 const Auth: FC = () => {
