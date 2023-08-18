@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { updateUsername, updateId } from '../features/userSlice';
 
 const LogIn: FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -11,6 +13,7 @@ const LogIn: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     switch (e.target.id) {
@@ -66,6 +69,8 @@ const LogIn: FC = () => {
       setFormValid('');
       setIsLoading(false);
 
+      dispatch(updateUsername(response.data.username));
+      dispatch(updateId(response.data.id));
       navigate('/');
     } catch (e) {
       setIsLoading(false);
