@@ -3,19 +3,30 @@ import SignUp from '../components/SignUp';
 import { Link } from 'react-router-dom';
 import LogIn from '../components/LogIn';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { updateId, updateUsername } from '../features/userSlice';
 
 const Auth: FC = () => {
-  const dispatch = useDispatch();
-
   const handleLogout = async () => {
     try {
       const response = await axios.post('/api/users/logout');
       console.log('LOGOUT: ', response);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-      dispatch(updateUsername(''));
-      dispatch(updateId(''));
+  const handleRefreshToken = async () => {
+    try {
+      const response = await axios.post('/api/users/refreshToken');
+      console.log('REFRESH: ', response);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const getMe = async () => {
+    try {
+      const response = await axios.get('/api/users/me');
+      console.log('ME: ', response);
     } catch (e) {
       console.error(e);
     }
@@ -29,6 +40,8 @@ const Auth: FC = () => {
       <SignUp />
       <LogIn />
       <button onClick={handleLogout}>Log out</button>
+      <button onClick={handleRefreshToken}>Refresh Token</button>
+      <button onClick={getMe}>Me</button>
     </>
   );
 };
